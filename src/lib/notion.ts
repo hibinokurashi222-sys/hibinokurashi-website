@@ -1,6 +1,7 @@
 import { Client, isFullPage } from '@notionhq/client'
 
 const notion = new Client({ auth: process.env.NOTION_TOKEN })
+const DATABASE_ID = process.env.NOTION_DATABASE_ID ?? 'a006d9c3-08ca-4d79-8982-cd3b86b5d46d'
 
 export type NewsItem = {
   id: string
@@ -23,38 +24,27 @@ function txt(prop: unknown): string {
 }
 
 export async function getNews(limit = 10): Promise<NewsItem[]> {
-  if (!process.env.NOTION_TOKEN) return mock(limit)
+  if (!process.env.NOTION_TOKEN) return []
   try {
-    const res = await notion.search({
-      filter: { property: 'object', value: 'page' },
-      sort: { direction: 'descending', timestamp: 'last_edited_time' },
-      page_size: limit * 2,
+    const res = await notion.databases.query({
+      database_id: DATABASE_ID,
+      filter: {
+        property: 'Published',
+        checkbox: { equals: true },
+      },
+      sorts: [{ property: 'Date', direction: 'descending' }],
+      page_size: limit,
     })
     return res.results
       .filter(isFullPage)
-      .filter(p => {
-        const pub = p.properties['Published']
-        if (!pub || typeof pub !== 'object') return true
-        const pp = pub as Record<string, unknown>
-        return pp.type !== 'checkbox' || pp.checkbox === true
-      })
-      .slice(0, limit)
       .map(p => ({
         id: p.id,
-        title: txt(p.properties['Title'] ?? p.properties['名前']),
-        date: txt(p.properties['Date'] ?? p.properties['日付']),
-        category: txt(p.properties['Category'] ?? p.properties['カテゴリ']),
-        excerpt: txt(p.properties['Excerpt'] ?? p.properties['概要']),
+        title: txt(p.properties['Title']),
+        date: txt(p.properties['Date']),
+        category: txt(p.properties['Category']),
+        excerpt: '',
       }))
   } catch {
-    return mock(limit)
+    return []
   }
-}
-
-function mock(limit: number): NewsItem[] {
-  return [
-    { id:'1', title:'ヒビノクラシの飲食事業がはじまります', date:'2026-04-01', category:'お知らせ', excerpt:'宿泊に加え、地元食材を使ったお食事の提供を開始します。' },
-    { id:'2', title:'春の予約受付を開始しました', date:'2026-03-15', category:'予約情報', excerpt:'2026年4〜6月の宿泊予約を受け付けております。' },
-    { id:'3', title:'気仙沼の春——畑に新しい命が芽吹いています', date:'2026-03-01', category:'スタッフブログ', excerpt:'3月に入り、畑では早くも新芽が出てきました。' },
-  ].slice(0, limit)
 }
