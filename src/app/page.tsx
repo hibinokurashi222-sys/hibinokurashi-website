@@ -1,66 +1,257 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import type { Metadata } from 'next'
+import Link from 'next/link'
+import Image from 'next/image'
+import Slideshow from '@/components/Slideshow'
+import FadeUp from '@/components/FadeUp'
+import Weather from '@/components/Weather'
+import { getNews } from '@/lib/notion'
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: 'ヒビノクラシ | 保育士が営む体験型宿泊施設 宮城県気仙沼市',
+  description: '笑っても、泣いても、大丈夫。保育士が営む、家族まるごと受け入れる宿。宮城県気仙沼市の築100年の古民家で過ごす、小さくて温かい家族の暮らし。',
+}
+export const revalidate = 60
+
+const portalItems = [
+  {
+    href: '/stay',
+    label: '施設紹介',
+    tag: 'STAY',
+    img: '/images/interior-1.jpg',
+  },
+  {
+    href: '/about#features',
+    label: '特徴',
+    tag: 'FEATURES',
+    img: '/images/girl-field.jpg',
+  },
+  {
+    href: '/plan',
+    label: '宿泊プラン',
+    tag: 'PLAN',
+    img: '/images/tatami.jpg',
+  },
+]
+
+const stripImgs = [
+  '/images/exterior.jpg', '/images/girl-field.jpg', '/images/interior-1.jpg',
+  '/images/nature.jpg', '/images/girl-smile.jpg', '/images/tatami.jpg',
+  '/images/kids-1.jpg', '/images/coil.jpg',
+]
+
+export default async function Top() {
+  const news = await getNews(3)
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      {/* ── HERO (ロゴのみ) ── */}
+      <section className="hero">
+        <Slideshow />
+        <div className="hero-overlay" />
+        <div className="hero-logo-center">
+          <Image
+            src="/images/logo-color-full.png"
+            alt="ヒビノクラシ"
+            width={3288}
+            height={3288}
+            style={{ width: 'min(200px, 32vw)', height: 'auto' }}
+            priority
+          />
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* ── ABOUT (縦書き・くらすわの森完全再現) ── */}
+      <section className="about-sec">
+        <div className="about-sec__inner">
+
+          {/* 見出し（左上） */}
+          <div className="about-sec__heading">
+            <h2 className="about-sec__heading-ja">ヒビノクラシとは</h2>
+            <p className="about-sec__heading-en">ABOUT HIBINOKURASHI</p>
+          </div>
+
+          {/* secondary：写真レイヤー（背面） */}
+          <div className="about-sec__secondary">
+            {/* メイン写真 + もっとみるバー */}
+            <div className="about-sec__main">
+              <div className="about-sec__main-img">
+                <Image
+                  src="/images/girl-yard.jpg"
+                  alt="ヒビノクラシの庭"
+                  width={900}
+                  height={700}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              </div>
+            </div>
+            {/* サブ写真（左下・absolute） */}
+            <div className="about-sec__aside">
+              <Image
+                src="/images/tatami.jpg"
+                alt="古民家の和室"
+                width={600}
+                height={450}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+            </div>
+          </div>
+
+          {/* primary：縦書きテキスト（写真の上に absolute で重なる） */}
+          <div className="about-sec__primary">
+            {/* 右：縦書きタイトル（白背景カード） */}
+            <div className="about-sec__title">
+              <p className="about-sec__title-en">HIBINOKURASHI</p>
+              <h3 className="about-sec__title-ja">
+                <span>家族で〝ただいま〟と</span>
+                <span>言いたくなる場所を、</span>
+                <span>がんばる日々のまんなかに。</span>
+              </h3>
+            </div>
+            {/* 左：縦書き本文（白背景カード） */}
+            <div className="about-sec__desc">
+              <span>こどもの幸せって、豊かさって、なんだろう。</span>
+              <span>保育士として向き合い続ける中で</span>
+              <span>気づいたのは——</span>
+              <span>幸せは特別な出来事よりも、</span>
+              <span>日々の暮らしの中にある、ということ。</span>
+              <span>ヒビノクラシは、築100年の古民家で過ごす、</span>
+              <span>小さくて温かい、あなたの家族の暮らしです。</span>
+              <span>おとなも、こどもも、ありのままでいい。</span>
+            </div>
+          </div>
+
         </div>
-      </main>
-    </div>
-  );
+      </section>
+
+      {/* ── PHOTO STRIP ── */}
+      <div className="photo-strip">
+        <div className="photo-strip-track">
+          {[...stripImgs, ...stripImgs].map((src, i) => (
+            <img key={i} src={src} alt="" style={{ height: 200, width: 'auto', objectFit: 'cover', borderRadius: 8, flexShrink: 0 }} />
+          ))}
+        </div>
+      </div>
+
+      {/* ── PORTAL ── */}
+      <section className="sec sec--bg portal-sec">
+        <div className="wrap">
+          <FadeUp>
+            <div className="portal-intro">
+              <div className="portal-intro-left">
+                <p className="portal-intro-label">ヒビノクラシのご案内</p>
+                <h2 className="portal-intro-title">保育士がいるから、<br />安心して遊べる宿。</h2>
+                <p className="portal-intro-body">気仙沼の古民家で、畑・海・山の自然体験を。保育士が常にそばにいるから、こどもは思いきり遊び、おとなはほっと息をつける。1日1組限定の完全貸し切り。他のご家族を気にせず、我が家のようにくつろいでいただけます。食事は地域の恵みをふんだんに使った手づくり。築100年の古民家で過ごす、小さくて温かい家族の時間を。</p>
+                <Link href="/about" className="btn btn--blue portal-intro-btn">ヒビノクラシの詳細はこちら <span className="arrow" /></Link>
+              </div>
+              <div className="portal-intro-right">
+                <div className="portal-intro-imgs">
+                  <div className="portal-intro-card">
+                    <div className="portal-intro-img">
+                      <Image src="/images/kids-1.jpg" alt="自然あそび" width={300} height={200} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    </div>
+                    <p className="portal-intro-caption"><span>「どこまで行けるかな？」</span>野山・海の自然体験</p>
+                  </div>
+                  <div className="portal-intro-card">
+                    <div className="portal-intro-img">
+                      <Image src="/images/interior-1.jpg" alt="古民家の空間" width={300} height={200} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    </div>
+                    <p className="portal-intro-caption"><span>「ただいま。」</span>築100年の古民家に泊まる</p>
+                  </div>
+                  <div className="portal-intro-card">
+                    <div className="portal-intro-img">
+                      <Image src="/images/girl-field.jpg" alt="畑・田んぼ体験" width={300} height={200} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    </div>
+                    <p className="portal-intro-caption"><span>「これ、食べられるの？」</span>畑で収穫、食卓へ</p>
+                  </div>
+                  <div className="portal-intro-card">
+                    <div className="portal-intro-img">
+                      <Image src="/images/tatami.jpg" alt="和の食卓" width={300} height={200} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    </div>
+                    <p className="portal-intro-caption"><span>「おかわり！」</span>地の恵みの手づくりごはん</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </FadeUp>
+          <ul className="portal-list">
+            {portalItems.map(({ href, label, tag, img }, i) => (
+              <li key={href} className="portal-item">
+                <FadeUp delay={i * 80}>
+                  <Link href={href} className="portal-link">
+                    <div className="portal-card">
+                      <Image
+                        src={img}
+                        alt={label}
+                        width={600}
+                        height={800}
+                        className="portal-card__img"
+                      />
+                      <div className="portal-card__overlay" />
+                      <span className="portal-card__tag">{tag}</span>
+                      <div className="portal-card__body">
+                        <span className="portal-card__title">{label}</span>
+                        <span className="portal-card__btn">詳しく見る →</span>
+                      </div>
+                    </div>
+                  </Link>
+                </FadeUp>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* ── NEWS ── */}
+      {news.length > 0 && (
+        <section className="sec sec--white">
+          <div className="wrap">
+            <FadeUp>
+              <div className="news-head">
+                <div className="sec-title" style={{ textAlign: 'left', marginBottom: 0 }}>
+                  <span className="en">NEWS</span>
+                  <span className="ja" style={{ fontSize: 22 }}>お知らせ</span>
+                </div>
+                <Link href="/news" className="btn btn--ghost" style={{ fontSize: 13 }}>すべて見る <span className="arrow" /></Link>
+              </div>
+              <ul className="news-list">
+                {news.map(item => (
+                  <li key={item.id} className="news-row">
+                    <time className="news-date" dateTime={item.date}>
+                      {item.date ? new Date(item.date).toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' }) : ''}
+                    </time>
+                    {item.category && <span className="news-tag">{item.category}</span>}
+                    <span className="news-ttl">{item.title}</span>
+                  </li>
+                ))}
+              </ul>
+            </FadeUp>
+          </div>
+        </section>
+      )}
+
+      {/* ── LOCATION ── */}
+      <section className="sec sec--bg">
+        <div className="wrap">
+          <FadeUp>
+            <div className="location-grid">
+              <div className="location-img">
+                <Image src="/images/girl-yard.jpg" alt="気仙沼の暮らし" width={600} height={450} style={{ width: '100%', height: 'auto', aspectRatio: '4/3', objectFit: 'cover', borderRadius: 12 }} />
+              </div>
+              <div className="location-body">
+                <div className="sec-title" style={{ textAlign: 'left', marginBottom: 24 }}>
+                  <span className="en">LOCATION</span>
+                  <span className="ja" style={{ fontSize: 22 }}>海と山に囲まれたまち<br />宮城県気仙沼市</span>
+                </div>
+                <p>宮城県の最北端にある気仙沼市。世界三大漁場のひとつ三陸沖に面し、今も全国から漁船が集まる港町です。</p>
+                <p>海沿いを離れると、気仙沼湾を見渡せる安波山や、四季ごとに色を変える田園風景が広がります。</p>
+                <Link href="/access" className="btn btn--blue" style={{ marginTop: 24 }}>アクセスを見る <span className="arrow" /></Link>
+              </div>
+            </div>
+            <Weather />
+          </FadeUp>
+        </div>
+      </section>
+
+    </>
+  )
 }
