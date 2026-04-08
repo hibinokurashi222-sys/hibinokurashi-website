@@ -6,6 +6,7 @@ const nav = [
   { href: '/stay',   label: '宿泊プラン' },
   { href: '/food',   label: 'お食事'    },
   { href: '/news',   label: 'お知らせ'  },
+  { href: '/faq',    label: 'よくある質問' },
   { href: '/access', label: 'アクセス'  },
 ]
 
