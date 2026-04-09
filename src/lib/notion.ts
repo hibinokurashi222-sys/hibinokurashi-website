@@ -3,7 +3,7 @@ import { Client, isFullPage } from '@notionhq/client'
 const notion = new Client({ auth: process.env.NOTION_TOKEN })
 
 // Notionデータベース/データソースID
-const DATABASE_ID = process.env.NOTION_DATABASE_ID ?? '33c82c47-b4e7-8001-adf6-e5c53c986a3b'
+const DATABASE_ID = process.env.NOTION_DATA_SOURCE_ID ?? process.env.NOTION_DATABASE_ID ?? 'c9251130-8408-48b5-b317-792c87248737'
 
 export type NewsItem = {
   id: string
