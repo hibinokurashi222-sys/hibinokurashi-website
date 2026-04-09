@@ -2,8 +2,8 @@ import { Client, isFullPage } from '@notionhq/client'
 
 const notion = new Client({ auth: process.env.NOTION_TOKEN })
 
-// data_source_id（データベース作成時に取得）
-const DATA_SOURCE_ID = process.env.NOTION_DATA_SOURCE_ID ?? 'c9251130-8408-48b5-b317-792c87248737'
+// Notionデータベース/データソースID
+const DATABASE_ID = process.env.NOTION_DATABASE_ID ?? '33c82c47-b4e7-8001-adf6-e5c53c986a3b'
 
 export type NewsItem = {
   id: string
@@ -30,7 +30,7 @@ export async function getNews(limit = 10): Promise<NewsItem[]> {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const client = notion as any
     const res = await client.dataSources.query({
-      data_source_id: DATA_SOURCE_ID,
+      data_source_id: DATABASE_ID,
       filter: {
         property: 'Published',
         checkbox: { equals: true },

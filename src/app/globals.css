@@ -1802,6 +1802,8 @@ ul, ol { list-style: none; }
 .loading-ring {
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
   animation: ringRotate 12s linear infinite;
 }
 .loading-ring__text {
@@ -1815,8 +1817,8 @@ ul, ol { list-style: none; }
 
 /* ロゴ本体 */
 .loading-logo {
-  width: 160px;
-  height: 160px;
+  width: 50%;
+  height: 50%;
   position: relative;
   z-index: 1;
   opacity: 0;
@@ -2505,4 +2507,325 @@ ul, ol { list-style: none; }
   color: var(--c-text-2);
   line-height: 2;
   margin: 0 0 12px;
+}
+
+/* ── Facility Info ── */
+.facility-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+.info-dl {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.info-dl__row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--c-border-y);
+  align-items: baseline;
+}
+.info-dl__row:first-child { border-top: 1px solid var(--c-border-y); }
+.info-dl__row dt {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--c-text-light);
+  text-transform: uppercase;
+}
+.info-dl__row dd {
+  font-size: 14px;
+  color: var(--c-text);
+  line-height: 1.8;
+  margin: 0;
+}
+.info-dl__row dd a {
+  color: var(--c-green);
+  text-decoration: none;
+}
+.info-dl__row dd a:hover { text-decoration: underline; }
+.facility-info-img {
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+/* ── Floor Plan ── */
+.floorplan-wrap {
+  background: var(--c-white);
+  border-radius: 16px;
+  padding: 40px;
+  border: 1px solid var(--c-border-y);
+  margin-bottom: 28px;
+}
+.floorplan-notes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.floorplan-note {
+  background: var(--c-white);
+  border-radius: 12px;
+  padding: 20px 24px;
+  border: 1px solid var(--c-border-y);
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.floorplan-note__label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--c-white);
+  background: var(--c-green);
+  border-radius: 4px;
+  padding: 4px 10px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.floorplan-note p {
+  font-size: 13px;
+  color: var(--c-text-2);
+  line-height: 1.9;
+  margin: 0;
+}
+
+/* ── Rooms ── */
+.about-rooms {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+.about-room-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+.about-room-card--rev {
+  direction: rtl;
+}
+.about-room-card--rev > * {
+  direction: ltr;
+}
+.about-room-img {
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  border-radius: 16px;
+}
+.about-room-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: var(--c-green);
+  border-left: 2px solid var(--c-green);
+  padding-left: 10px;
+  margin-bottom: 12px;
+}
+.about-room-name {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--c-text);
+  margin-bottom: 16px;
+  font-family: 'Noto Serif JP', serif;
+}
+.about-room-desc {
+  font-size: 14px;
+  color: var(--c-text-2);
+  line-height: 2.1;
+  margin: 0;
+}
+
+/* ── Amenity ── */
+.amenity-sections {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.amenity-section {
+  background: var(--c-white);
+  border-radius: 16px;
+  padding: 28px 24px;
+  border: 1px solid var(--c-border-y);
+}
+.amenity-section__title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--c-green);
+  border-bottom: 1px solid var(--c-border-y);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+.amenity-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.amenity-list li {
+  font-size: 13px;
+  color: var(--c-text-2);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 1.6;
+}
+.amenity-check {
+  color: var(--c-green);
+  font-weight: 700;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+/* ── Back to top link ── */
+.back-to-top {
+  display: flex;
+  justify-content: center;
+  padding: 64px 0 80px;
+}
+.back-to-top__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--c-text-2);
+  text-decoration: none;
+  border: 1px solid var(--c-border-y);
+  border-radius: 99px;
+  padding: 12px 28px;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.back-to-top__btn:hover {
+  background: var(--c-green);
+  color: #fff;
+  border-color: var(--c-green);
+  opacity: 1;
+}
+
+/* ══════════════════════════════════
+   RESPONSIVE: TABLET & MOBILE
+   (追加ルール — 900px / 768px / 480px)
+══════════════════════════════════ */
+
+/* ── Tablet + Mobile (≤ 900px) ── */
+@media (max-width: 900px) {
+  /* portal-intro: 左右→上下積み */
+  .portal-intro {
+    flex-direction: column;
+    margin: 0 0 80px;
+    padding: 52px 24px;
+    gap: 36px;
+  }
+  .portal-intro-left  { max-width: 100%; }
+  .portal-intro-right { max-width: 100%; width: 100%; }
+
+  /* portal-list: 2列に折り返し */
+  .portal-list { flex-wrap: wrap; }
+  .portal-item { flex: 0 0 calc(50% - 10px); min-width: 0; }
+
+  /* footer */
+  .footer-main {
+    flex-direction: column;
+    padding: 48px 24px 32px;
+    gap: 36px;
+  }
+  .footer-main__right { gap: 40px; }
+  .footer-bottom { padding: 20px 24px; }
+  .footer-logo { height: 100px; }
+  .footer-cta { flex-direction: column; padding: 40px 24px; gap: 20px; text-align: center; }
+  .footer-cta__btn { align-self: center; }
+
+  /* ローディング画面 */
+  .loading-logo-wrap { width: 260px; height: 260px; }
+}
+
+/* ── Mobile (≤ 768px) — 追加 ── */
+@media (max-width: 768px) {
+  /* weather week: 4列 */
+  .weather-week { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ── Small Mobile (≤ 480px) ── */
+@media (max-width: 480px) {
+  /* 基本余白 */
+  .wrap, .wrap-s, .wrap-xs { padding: 0 16px; }
+  .sec { padding: 48px 0; }
+
+  /* portal: 1列 */
+  .portal-item { flex: 0 0 100%; }
+  .portal-list { gap: 16px; }
+  .portal-intro { padding: 40px 16px; margin: 0 0 60px; }
+
+  /* page-hero */
+  .page-hero { height: 200px; }
+  .page-hero-title { font-size: 20px; letter-spacing: 0.1em; }
+  .page-hero-en { font-size: 10px; }
+
+  /* ローディング画面 */
+  .loading-logo-wrap { width: 220px; height: 220px; }
+
+  /* about */
+  .about-sec__title-ja span { font-size: 16px; }
+  .about-sec__viewmore-link { height: 80px; }
+  .facility-info-grid { grid-template-columns: 1fr; gap: 32px; }
+  .floorplan-wrap { padding: 20px; }
+  .floorplan-notes { grid-template-columns: 1fr; }
+  .about-room-card { grid-template-columns: 1fr; gap: 24px; }
+  .about-room-card--rev { direction: ltr; }
+  .amenity-sections { grid-template-columns: 1fr; }
+
+  /* feature-row: 番号非表示 */
+  .feature-row { grid-template-columns: 1fr; gap: 16px; padding: 32px 0; }
+  .feature-num { font-size: 28px; }
+
+  /* place/food グリッド: 1列 */
+  .place-grid { grid-template-columns: 1fr 1fr; gap: 4px; }
+  .food-photo-grid { grid-template-columns: 1fr 1fr; gap: 4px; }
+
+  /* rooms/exp/nearby: 1列（既に768pxで対応済み） */
+  .rooms-grid { gap: 16px; }
+  .exp-grid { gap: 16px; }
+  .nearby-grid { gap: 16px; }
+
+  /* plan */
+  .plan-title { font-size: 20px; }
+  .plan-note-box { padding: 24px 16px; }
+  .plan-row { gap: 24px; }
+
+  /* FAQ */
+  .faq-q { font-size: 14px; gap: 12px; }
+  .faq-a { font-size: 13px; gap: 12px; }
+  .faq-icon { width: 24px; height: 24px; font-size: 11px; }
+  .faq-group { margin-bottom: 48px; }
+  .faq-contact-btns { flex-direction: column; align-items: center; }
+
+  /* footer */
+  .footer-main__right { flex-direction: column; gap: 28px; }
+  .footer-cta__title { font-size: 18px; }
+  .footer-cta__sub { font-size: 13px; }
+
+  /* reserve */
+  .reserve-box { padding: 24px 16px; }
+
+  /* 404 */
+  .notfound-code { font-size: 60px; }
+  .notfound-title { font-size: 18px; }
+  .notfound-body { font-size: 13px; }
+
+  /* weather */
+  .weather-today__temp { font-size: 64px; }
+  .weather-week { grid-template-columns: repeat(4, 1fr); }
+  .weather-week__day { padding: 12px 4px; gap: 6px; }
+  .weather-week__icon { font-size: 18px; }
+  .weather-week__desc { display: none; }
 }

@@ -1,10 +1,15 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import ScrollReveal from '@/components/ScrollReveal'
 import StickyCta from '@/components/StickyCta'
 import LoadingScreen from '@/components/LoadingScreen'
 import './globals.css'
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+}
 
 export const metadata: Metadata = {
   title: {

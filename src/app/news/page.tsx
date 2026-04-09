@@ -64,6 +64,10 @@ export default async function News() {
         </div>
       </section>
 
+      <div className="back-to-top">
+        <a href="/" className="back-to-top__btn">← トップページへ戻る</a>
+      </div>
+
     </>
   )
 }

@@ -174,17 +174,151 @@ export default function About() {
           </FadeUp>
           <FadeUp delay={80}>
             <div className="place-grid">
-              <Image src="/images/exterior.jpg" alt="外観" width={600} height={400} />
-              <Image src="/images/interior-2.jpg" alt="室内" width={600} height={400} />
-              <Image src="/images/tatami.jpg" alt="和室" width={600} height={400} />
-              <Image src="/images/coil.jpg" alt="縁側" width={600} height={400} />
+              <Image src="/images/exterior-front.jpg" alt="外観正面" width={600} height={400} />
+              <Image src="/images/garden.jpg" alt="庭と外観" width={600} height={400} />
+              <Image src="/images/room-yuuhi.jpg" alt="夕日の間" width={600} height={400} />
+              <Image src="/images/room-mori.jpg" alt="杜" width={600} height={400} />
             </div>
             <p className="place-caption">
-              宮城県気仙沼市に佇む築100年の古民家。太い梁と高い天井、縁側から見える庭——時間がゆっくりと流れる空間です。清潔に整えられた室内で、現代の快適さと古民家の温もりを両立しています。
+              宮城県気仙沼市に佇む築100年の古民家。赤い屋根と太い梁、縁側から見える庭——時間がゆっくりと流れる空間です。清潔に整えられた室内で、現代の快適さと古民家の温もりを両立しています。
             </p>
           </FadeUp>
         </div>
       </section>
+
+      {/* ── FACILITY INFO ── */}
+      <section className="sec sec--white">
+        <div className="wrap">
+          <FadeUp>
+            <div className="sec-title">
+              <span className="en">FACILITY INFO</span>
+              <span className="ja">施設情報</span>
+            </div>
+          </FadeUp>
+          <FadeUp delay={80}>
+            <div className="facility-info-grid">
+              <div className="facility-info-table">
+                <dl className="info-dl">
+                  <div className="info-dl__row">
+                    <dt>所在地</dt>
+                    <dd>宮城県気仙沼市</dd>
+                  </div>
+                  <div className="info-dl__row">
+                    <dt>チェックイン</dt>
+                    <dd>16:00 〜 21:00</dd>
+                  </div>
+                  <div className="info-dl__row">
+                    <dt>チェックアウト</dt>
+                    <dd>10:00</dd>
+                  </div>
+                  <div className="info-dl__row">
+                    <dt>定員</dt>
+                    <dd>最大8名（1日1組 完全貸切）</dd>
+                  </div>
+                  <div className="info-dl__row">
+                    <dt>駐車場</dt>
+                    <dd>無料（敷地内）</dd>
+                  </div>
+                  <div className="info-dl__row">
+                    <dt>Wi-Fi</dt>
+                    <dd>無料（全館）</dd>
+                  </div>
+                  <div className="info-dl__row">
+                    <dt>お問い合わせ</dt>
+                    <dd><a href="tel:08096571238">080-9657-1238</a></dd>
+                  </div>
+                </dl>
+              </div>
+              <div className="facility-info-img">
+                <Image
+                  src="/images/exterior-wide.jpg"
+                  alt="施設外観"
+                  width={600}
+                  height={450}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 16 }}
+                />
+              </div>
+            </div>
+          </FadeUp>
+        </div>
+      </section>
+
+      {/* ── FLOOR PLAN ── */}
+      <section className="sec sec--bg">
+        <div className="wrap">
+          <FadeUp>
+            <div className="sec-title">
+              <span className="en">FLOOR PLAN</span>
+              <span className="ja">間取り</span>
+            </div>
+          </FadeUp>
+          <FadeUp delay={80}>
+            <div className="floorplan-wrap">
+              <Image
+                src="/images/floorplan.png"
+                alt="間取り図"
+                width={860}
+                height={620}
+                style={{ width: '100%', height: 'auto' }}
+              />
+            </div>
+            <div className="floorplan-notes">
+              <div className="floorplan-note">
+                <span className="floorplan-note__label">1F</span>
+                <p>民泊スペース。和室・リビング・バスルーム・トイレを完備。縁側から庭を望めます。</p>
+              </div>
+              <div className="floorplan-note">
+                <span className="floorplan-note__label">2F</span>
+                <p>運営者の居住スペース。宿泊者の方は1Fをまるごとお使いいただけます。</p>
+              </div>
+            </div>
+          </FadeUp>
+        </div>
+      </section>
+
+      {/* ── AMENITY ── */}
+      <section className="sec sec--bg">
+        <div className="wrap">
+          <FadeUp>
+            <div className="sec-title">
+              <span className="en">AMENITY</span>
+              <span className="ja">設備・アメニティ</span>
+            </div>
+          </FadeUp>
+          <FadeUp delay={80}>
+            <div className="amenity-sections">
+              <div className="amenity-section">
+                <h4 className="amenity-section__title">設備</h4>
+                <ul className="amenity-list">
+                  {['Wi-Fi（無料）', '駐車場（無料）', 'エアコン', '冷蔵庫', '電子レンジ', '共用キッチン', 'バスルーム', 'トイレ', '洗濯機'].map(i => (
+                    <li key={i}><span className="amenity-check">✓</span>{i}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="amenity-section">
+                <h4 className="amenity-section__title">バス・洗面</h4>
+                <ul className="amenity-list">
+                  {['バスタオル', 'フェイスタオル', 'シャンプー', 'コンディショナー', 'ボディソープ', 'ドライヤー', '歯ブラシ', '石鹸'].map(i => (
+                    <li key={i}><span className="amenity-check">✓</span>{i}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="amenity-section">
+                <h4 className="amenity-section__title">こども向け</h4>
+                <ul className="amenity-list">
+                  {['ベビーベッド（要相談）', '子ども用食器', '絵本・おもちゃ', 'お昼寝布団', 'ベビーバス（要相談）'].map(i => (
+                    <li key={i}><span className="amenity-check">✓</span>{i}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </FadeUp>
+        </div>
+      </section>
+
+      <div className="back-to-top">
+        <a href="/" className="back-to-top__btn">← トップページへ戻る</a>
+      </div>
 
     </>
   )
