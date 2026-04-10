@@ -3,7 +3,7 @@ import { Client, isFullPage } from '@notionhq/client'
 const notion = new Client({ auth: process.env.NOTION_TOKEN })
 
 // Notionデータベース/データソースID
-const DATABASE_ID = process.env.NOTION_DATA_SOURCE_ID ?? process.env.NOTION_DATABASE_ID ?? 'c9251130-8408-48b5-b317-792c87248737'
+const DATABASE_ID = process.env.NOTION_DATA_SOURCE_ID ?? process.env.NOTION_DATABASE_ID ?? '33c82c47-b4e7-8090-bb90-000b452e1a0e'
 
 export type NewsItem = {
   id: string
@@ -35,15 +35,15 @@ export async function getNews(limit = 10): Promise<NewsItem[]> {
         property: 'Published',
         checkbox: { equals: true },
       },
-      sorts: [{ property: 'Date', direction: 'descending' }],
+      sorts: [{ property: '日付', direction: 'descending' }],
       page_size: limit,
     })
     return (res.results ?? [])
       .filter(isFullPage)
       .map((p: Parameters<typeof isFullPage>[0] & { id: string; properties: Record<string, unknown> }) => ({
         id: p.id,
-        title: txt(p.properties['Title']),
-        date: txt(p.properties['Date']),
+        title: txt(p.properties['名前']),
+        date: txt(p.properties['日付']),
         category: txt(p.properties['Category']),
       }))
   } catch {
