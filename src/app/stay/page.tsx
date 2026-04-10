@@ -5,7 +5,9 @@ import FadeUp from '@/components/FadeUp'
 
 export const metadata: Metadata = {
   title: '施設紹介',
-  description: '気仙沼市の古民家でのご宿泊。貸し切りだからできる、家族まるごとの体験。施設・設備・予約方法をご案内します。',
+  description: '気仙沼市の築100年古民家「ヒビノクラシ」の施設紹介。1日1組完全貸し切り、保育士常駐。和室・リビング・縁側・庭など家族でのびのび過ごせます。',
+  alternates: { canonical: 'https://hibinokurashi.jp/stay/' },
+  openGraph: { url: 'https://hibinokurashi.jp/stay/' },
 }
 
 const amenities = [
@@ -27,7 +29,7 @@ const rooms = [
   { img: '/images/tatami.jpg', title: '和室（8畳）', desc: '古民家らしい落ち着いた和室。布団を敷いてゆったりお休みいただけます。' },
   { img: '/images/interior-1.jpg', title: 'リビング・ダイニング', desc: '家族みんなで食事や団らんができる、広々とした共有スペース。' },
   { img: '/images/interior-2.jpg', title: '縁側', desc: '庭を眺めながらのんびり過ごせる縁側。気仙沼の四季を感じる特等席。' },
-  { img: '/images/girl-yard.jpg', title: '庭・外遊びスペース', desc: 'こどもが思いきり遊べる広い庭。畑も隣接しています。' },
+  { img: '/images/girl-yard.jpg', title: '庭・外遊びスペース', desc: 'こどもが思いきり遊べる広い庭。四季の草花に囲まれた、のびのびとした外遊びスペースです。' },
 ]
 
 const flows = [
@@ -152,11 +154,11 @@ export default function Stay() {
             <div className="exp-grid">
               <div className="exp-card">
                 <div className="exp-card-img">
-                  <Image src="/images/girl-field.jpg" alt="畑体験" width={480} height={320} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <Image src="/images/nature.jpg" alt="海・自然散策" width={480} height={320} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
                 <div className="exp-card-body">
-                  <h3>畑・農業体験</h3>
-                  <p>宿のすぐそばにある畑で、野菜の収穫や土いじりを体験できます。採れたての野菜はそのまま食卓へ。</p>
+                  <h3>海・自然散策</h3>
+                  <p>宿の近くの海岸や里山を散策できます。気仙沼の自然を五感で感じる、のびやかな体験です。</p>
                 </div>
               </div>
               <div className="exp-card">

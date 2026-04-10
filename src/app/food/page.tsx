@@ -4,7 +4,9 @@ import FadeUp from '@/components/FadeUp'
 
 export const metadata: Metadata = {
   title: 'お食事について',
-  description: '気仙沼の地元食材を使った、ヒビノクラシのお食事。畑から食卓へ。旬を味わう、温かいごはん。',
+  description: '気仙沼の地元食材を使ったヒビノクラシの手づくりごはん。食品添加物を使わず、体に優しい素材をいかした温かい家庭料理をご提供します。',
+  alternates: { canonical: 'https://hibinokurashi.jp/food/' },
+  openGraph: { url: 'https://hibinokurashi.jp/food/' },
 }
 
 export default function Food() {
@@ -12,7 +14,7 @@ export default function Food() {
     <>
       {/* ── PAGE HERO ── */}
       <section className="page-hero">
-        <div className="page-hero-bg" style={{ backgroundImage: "url('/images/girl-field.jpg')" }} />
+        <div className="page-hero-bg" style={{ backgroundImage: "url('/images/photo-1.jpg')" }} />
         <div className="page-hero-overlay" />
         <div className="page-hero-body">
           <span className="page-hero-en">FOOD</span>
@@ -37,10 +39,10 @@ export default function Food() {
                   地元の食材を、旬のうちに、丁寧に。それだけを大切にしています。
                 </p>
                 <p>
-                  宿のすぐそばにある畑で育てた野菜、気仙沼港に水揚げされた新鮮な魚介、地元生産者さんのこだわりの食材——素材そのものの力を引き出すシンプルな調理で、食卓をととのえます。
+                  気仙沼港に水揚げされた新鮮な魚介、地元生産者さんのこだわりの食材——素材そのものの力を引き出すシンプルな調理で、食卓をととのえます。
                 </p>
                 <p>
-                  こどもと一緒に収穫した野菜が夕飯に並ぶ。「これ、さっき採ったやつだ！」という発見と喜びも、ヒビノクラシの食事の一部です。
+                  食品添加物は使いません。こどもが口にするものだから、素材と向き合い、体に優しいごはんを丁寧につくっています。
                 </p>
               </div>
               <div className="food-concept-img">
@@ -57,27 +59,27 @@ export default function Food() {
         </div>
       </section>
 
-      {/* ── HARVEST ── */}
+      {/* ── LOCAL ── */}
       <section className="sec sec--bg">
         <div className="wrap">
           <FadeUp>
             <div className="sec-title">
-              <span className="en">FROM THE FIELD</span>
-              <span className="ja">畑から食卓へ</span>
+              <span className="en">FROM LOCAL PRODUCERS</span>
+              <span className="ja">地元の食材から、体に優しい食卓へ</span>
             </div>
           </FadeUp>
           <FadeUp delay={80}>
             <div className="food-row">
               <div className="food-row-img">
-                <Image src="/images/girl-field.jpg" alt="畑で遊ぶ子ども" width={560} height={420} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 16 }} />
+                <Image src="/images/nature.jpg" alt="気仙沼の自然" width={560} height={420} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 16 }} />
               </div>
               <div className="food-row-text">
-                <h2>農薬を使わず、土と向き合う。</h2>
+                <h2>添加物を使わず、素材と向き合う。</h2>
                 <p>
-                  宿に隣接した畑では、農薬・化学肥料を使わずに野菜を育てています。季節によって採れるものが変わるので、来るたびに違う表情の食卓をお楽しみいただけます。
+                  気仙沼の地元生産者さんから届く旬の野菜、港に水揚げされた新鮮な魚介。食品添加物は使わず、素材そのものの味を大切にした手づくりごはんをご提供します。
                 </p>
                 <p>
-                  こどもと一緒に収穫体験もできます。泥だらけになりながら掘ったじゃがいも、木から取ったトマト——食べる前から体験は始まっています。
+                  こどもが安心して食べられるものを、おとなも一緒においしく。家族みんなの体に優しい食卓です。
                 </p>
               </div>
             </div>
@@ -125,7 +127,7 @@ export default function Food() {
               <div className="menu-card">
                 <p className="menu-card-label">BREAKFAST</p>
                 <h3>朝食</h3>
-                <p>畑の野菜を使ったシンプルな和朝食。炊きたてのごはん、お味噌汁、おかず数品。ゆっくりと一日をはじめるための、温かい朝ごはんをご用意します。</p>
+                <p>地元食材を使ったシンプルな和朝食。炊きたてのごはん、お味噌汁、おかず数品。食品添加物を使わない、体にすっと入る温かい朝ごはんをご用意します。</p>
               </div>
             </div>
             <p className="menu-note">※食事内容は時期・食材の状況により変わります。食物アレルギーのある方は必ずご予約時にお知らせください。</p>
@@ -144,7 +146,7 @@ export default function Food() {
             <div className="food-photo-grid">
               <Image src="/images/photo-1.jpg" alt="食事の様子" width={600} height={400} />
               <Image src="/images/photo-2.jpg" alt="食材" width={600} height={400} />
-              <Image src="/images/girl-field.jpg" alt="収穫体験" width={600} height={400} />
+              <Image src="/images/kids-1.jpg" alt="自然体験" width={600} height={400} />
               <Image src="/images/nature.jpg" alt="気仙沼の自然" width={600} height={400} />
             </div>
           </FadeUp>

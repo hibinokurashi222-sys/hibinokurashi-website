@@ -4,7 +4,9 @@ import FadeUp from '@/components/FadeUp'
 
 export const metadata: Metadata = {
   title: 'よくある質問',
-  description: 'ヒビノクラシへのよくある質問をまとめました。ご予約・施設・お食事・お子さまについてなど。',
+  description: 'ヒビノクラシへのよくある質問（FAQ）。ご予約方法・施設設備・お食事内容・赤ちゃん連れ・アレルギー対応など、ご不明な点をまとめてご確認いただけます。',
+  alternates: { canonical: 'https://hibinokurashi.jp/faq/' },
+  openGraph: { url: 'https://hibinokurashi.jp/faq/' },
 }
 
 const faqs = [
@@ -72,7 +74,7 @@ const faqs = [
     items: [
       {
         q: '食事はどのような内容ですか？',
-        a: '夕食・朝食が含まれています。地元気仙沼の食材と宿に隣接した畑でとれた野菜を使った手づくり料理をご提供します。内容は季節や食材の状況により変わります。',
+        a: '夕食・朝食が含まれています。地元気仙沼の生産者さんから届く旬の食材を使い、食品添加物を使わない手づくり料理をご提供します。内容は季節や食材の状況により変わります。',
       },
       {
         q: 'アレルギー対応はできますか？',
@@ -103,9 +105,26 @@ const faqs = [
   },
 ]
 
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.flatMap(({ items }) =>
+    items.map(({ q, a }) => ({
+      '@type': 'Question',
+      name: q,
+      acceptedAnswer: { '@type': 'Answer', text: a },
+    }))
+  ),
+}
+
 export default function Faq() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+
       {/* ── PAGE HERO ── */}
       <section className="page-hero">
         <div className="page-hero-bg" style={{ backgroundImage: "url('/images/kids-1.jpg')" }} />
@@ -125,7 +144,7 @@ export default function Faq() {
                 <h2 className="faq-category">{category}</h2>
                 <dl className="faq-list">
                   {items.map(({ q, a }) => (
-                    <div key={q} className="faq-item">
+                    <article key={q} className="faq-item">
                       <dt className="faq-q">
                         <span className="faq-icon">Q</span>
                         {q}
@@ -134,7 +153,7 @@ export default function Faq() {
                         <span className="faq-icon faq-icon--a">A</span>
                         {a}
                       </dd>
-                    </div>
+                    </article>
                   ))}
                 </dl>
               </div>

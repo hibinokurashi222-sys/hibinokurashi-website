@@ -4,8 +4,10 @@ import Link from 'next/link'
 import FadeUp from '@/components/FadeUp'
 
 export const metadata: Metadata = {
-  title: '宿泊プラン',
-  description: 'ヒビノクラシの宿泊プランをご案内します。1棟貸し切り、保育士常駐、食事付きの体験型宿泊。',
+  title: '宿泊プラン・料金',
+  description: 'ヒビノクラシの宿泊プランと料金をご案内。1棟まるごと貸し切り・保育士常駐・食事付き。スタンダードプラン・体験プランなど家族のご要望に合わせてご提案します。',
+  alternates: { canonical: 'https://hibinokurashi.jp/plan/' },
+  openGraph: { url: 'https://hibinokurashi.jp/plan/' },
 }
 
 const plans = [
@@ -24,12 +26,12 @@ const plans = [
     id: 'experience',
     label: 'PLAN 02',
     title: '体験プラン',
-    subtitle: '自然・畑・海を満喫する、1泊2日',
-    desc: 'スタンダードプランに加え、畑での収穫体験や、気仙沼の自然を体験するアクティビティを組み込んだプラン。こどもたちの「はじめて」がたくさん詰まった2日間です。',
+    subtitle: '海・山・里の自然を満喫する、1泊2日',
+    desc: 'スタンダードプランに加え、気仙沼の海・山・里を体験するアクティビティを組み込んだプラン。こどもたちの「はじめて」がたくさん詰まった2日間です。',
     price: '¥38,000〜',
     unit: '（1棟）',
-    includes: ['夕食・朝食', '子育て用品一式', '1棟貸し切り', '保育士スタッフ常駐', '畑・収穫体験', '自然体験アクティビティ'],
-    img: '/images/girl-field.jpg',
+    includes: ['夕食・朝食', '子育て用品一式', '1棟貸し切り', '保育士スタッフ常駐', '海・自然散策', '自然体験アクティビティ'],
+    img: '/images/nature.jpg',
   },
   {
     id: 'extended',
@@ -39,7 +41,7 @@ const plans = [
     desc: '2泊3日でじっくりと気仙沼を楽しむプラン。2日目は自由に海や市内を散策、夜はスタッフと一緒に焚き火を囲んで。非日常の中に、暮らしのリズムを感じる滞在です。',
     price: '¥55,000〜',
     unit: '（1棟）',
-    includes: ['夕食×2・朝食×2', '子育て用品一式', '1棟貸し切り', '保育士スタッフ常駐', '畑・収穫体験', '焚き火体験'],
+    includes: ['夕食×2・朝食×2', '子育て用品一式', '1棟貸し切り', '保育士スタッフ常駐', '海・自然散策', '焚き火体験'],
     img: '/images/coil.jpg',
   },
 ]
@@ -105,7 +107,7 @@ export default function Plan() {
                     <span className="plan-price-num">{price}</span>
                     <span className="plan-price-unit">{unit}</span>
                   </div>
-                  <Link href="/stay#reserve" className="btn btn--blue">このプランで予約する <span className="arrow" /></Link>
+                  <Link href="/stay/#reserve" className="btn btn--blue">このプランで予約する <span className="arrow" /></Link>
                 </div>
               </div>
             </FadeUp>

@@ -4,7 +4,9 @@ import FadeUp from '@/components/FadeUp'
 
 export const metadata: Metadata = {
   title: 'アクセス',
-  description: '宮城県気仙沼市へのアクセス方法。車・電車・バスでの行き方をご案内します。',
+  description: '宮城県気仙沼市「ヒビノクラシ」へのアクセス。車・新幹線＋BRTの行き方と所要時間、最寄りバス停からの経路、周辺の観光スポット情報をご案内します。',
+  alternates: { canonical: 'https://hibinokurashi.jp/access/' },
+  openGraph: { url: 'https://hibinokurashi.jp/access/' },
 }
 
 export default function Access() {
@@ -32,7 +34,7 @@ export default function Access() {
           <FadeUp delay={80}>
             <div className="access-location-grid">
               <div className="access-location-text">
-                <p className="access-address">〒988-0824<br />宮城県気仙沼市○○○○ ××-××</p>
+                <p className="access-address">〒988-0824<br />宮城県気仙沼市川原崎182</p>
                 <p>
                   宮城県の最北端、三陸海岸の南端に位置する気仙沼市。海と山に囲まれた豊かな自然の中に、ヒビノクラシはあります。
                 </p>
@@ -155,11 +157,11 @@ export default function Access() {
               </div>
               <div className="nearby-card">
                 <div className="nearby-card-img">
-                  <Image src="/images/girl-field.jpg" alt="田んぼ・畑" width={400} height={260} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <Image src="/images/nature.jpg" alt="里山の風景" width={400} height={260} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
                 <div className="nearby-card-body">
-                  <h3>田園風景</h3>
-                  <p>四季折々に色を変える田んぼや畑。のどかな里山の風景が広がります。</p>
+                  <h3>里山の風景</h3>
+                  <p>四季折々に表情を変える里山。のどかな自然の中をゆっくり散策できます。</p>
                 </div>
               </div>
             </div>
