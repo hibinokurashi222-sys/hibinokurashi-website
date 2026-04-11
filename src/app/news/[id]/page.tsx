@@ -4,10 +4,12 @@ import { notFound } from 'next/navigation'
 import FadeUp from '@/components/FadeUp'
 import { getNewsItem, getNewsBlocks, getNewsIds, type Block } from '@/lib/notion'
 
-export const revalidate = 60
+export const dynamicParams = false
 
 export async function generateStaticParams() {
   const ids = await getNewsIds()
+  // Notion疎通不可など空の場合でもビルド失敗させないためのフォールバック
+  if (ids.length === 0) return [{ id: 'placeholder' }]
   return ids.map(id => ({ id }))
 }
 
