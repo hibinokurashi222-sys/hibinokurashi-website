@@ -2,8 +2,9 @@ import { Client, isFullPage } from '@notionhq/client'
 
 const notion = new Client({ auth: process.env.NOTION_TOKEN })
 
-// Notionデータベース/データソースID
-const DATABASE_ID = process.env.NOTION_DATA_SOURCE_ID ?? process.env.NOTION_DATABASE_ID ?? '33c82c47-b4e7-8090-bb90-000b452e1a0e'
+// Notionデータソース ID（「ニュース・お知らせ」データソース）
+// CI 側 secrets に誤った値が入っていた経緯で env override は廃止
+const DATABASE_ID = '33c82c47-b4e7-8090-bb90-000b452e1a0e'
 
 export type NewsItem = {
   id: string
