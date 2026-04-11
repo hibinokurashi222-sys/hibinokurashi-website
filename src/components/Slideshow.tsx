@@ -12,6 +12,7 @@ const slides = [
 export default function Slideshow() {
   const [i, setI] = useState(0)
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const t = setInterval(() => setI(p => (p + 1) % slides.length), 5000)
     return () => clearInterval(t)
   }, [])

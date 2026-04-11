@@ -5,9 +5,10 @@ import { getNews } from '@/lib/notion'
 
 export const metadata: Metadata = {
   title: 'お知らせ',
-  description: 'ヒビノクラシからのお知らせ・最新情報。',
+  description: 'ヒビノクラシからの最新お知らせ。営業情報・季節の体験・イベント・スタッフからのメッセージなど随時更新しています。',
+  alternates: { canonical: 'https://hibinokurashi.jp/news/' },
+  openGraph: { url: 'https://hibinokurashi.jp/news/' },
 }
-export const revalidate = 60
 
 export default async function News() {
   const news = await getNews(30)
@@ -45,17 +46,19 @@ export default async function News() {
               {news.map((item, i) => (
                 <FadeUp key={item.id} delay={i * 40}>
                   <li className="news-row">
-                    <time className="news-date" dateTime={item.date}>
-                      {item.date
-                        ? new Date(item.date).toLocaleDateString('ja-JP', {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric',
-                          })
-                        : ''}
-                    </time>
-                    {item.category && <span className="news-tag">{item.category}</span>}
-                    <span className="news-ttl">{item.title}</span>
+                    <Link href={`/news/${item.id}`} className="news-row__link">
+                      <time className="news-date" dateTime={item.date}>
+                        {item.date
+                          ? new Date(item.date).toLocaleDateString('ja-JP', {
+                              year: 'numeric',
+                              month: 'long',
+                              day: 'numeric',
+                            })
+                          : ''}
+                      </time>
+                      {item.category && <span className="news-tag">{item.category}</span>}
+                      <span className="news-ttl">{item.title}</span>
+                    </Link>
                   </li>
                 </FadeUp>
               ))}

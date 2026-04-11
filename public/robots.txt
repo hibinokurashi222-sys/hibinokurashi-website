@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# AI クローラー（明示的に許可）
+User-agent: GPTBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+Sitemap: https://hibinokurashi.jp/sitemap.xml

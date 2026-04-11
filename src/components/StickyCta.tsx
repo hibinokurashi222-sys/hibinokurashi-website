@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
-import Link from 'next/link'
+import { trackReserve } from '@/lib/gtm'
+import TrackLink from './TrackLink'
 
 export default function StickyCta() {
   const [show, setShow] = useState(false)
@@ -14,8 +15,14 @@ export default function StickyCta() {
     return () => window.removeEventListener('scroll', fn)
   }, [])
   return (
-    <Link href="/stay#reserve" className={`sticky-cta btn btn--blue${show ? ' show' : ''}`}>
+    <TrackLink
+      href="/stay/#reserve"
+      className={`sticky-cta btn btn--blue${show ? ' show' : ''}`}
+      gtmEvent="reserve_click"
+      gtmLabel="sticky_cta"
+      onClick={() => trackReserve('sticky_cta')}
+    >
       ご予約はこちら
-    </Link>
+    </TrackLink>
   )
 }

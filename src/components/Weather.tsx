@@ -62,7 +62,11 @@ async function fetchWeather(): Promise<WeatherData | null> {
 
 export default async function Weather() {
   const w = await fetchWeather()
-  if (!w) return null
+  if (!w) return (
+    <div className="weather-widget weather-widget--fallback">
+      <p className="weather-fallback">現在、気象情報を取得できません。</p>
+    </div>
+  )
 
   const today = w.days[0]
   const todayDate = new Date(today.date)

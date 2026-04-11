@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import FadeUp from '@/components/FadeUp'
+import TrackA from '@/components/TrackA'
 
 export const metadata: Metadata = {
   title: 'よくある質問',
@@ -164,8 +165,12 @@ export default function Faq() {
             <div className="faq-contact">
               <p>ご不明な点はお気軽にお問い合わせください。</p>
               <div className="faq-contact-btns">
-                <a href="mailto:info@hibinokurashi.com" className="btn btn--blue">メールで問い合わせる <span className="arrow" /></a>
-                <a href="tel:08096571238" className="btn btn--ghost">電話で問い合わせる <span className="arrow" /></a>
+                <TrackA href="mailto:info@hibinokurashi.com" className="btn btn--blue" gtmEvent="contact_click" gtmLabel="faq_email">
+                  メールで問い合わせる <span className="arrow" />
+                </TrackA>
+                <TrackA href="tel:08096571238" className="btn btn--ghost" gtmEvent="contact_click" gtmLabel="faq_phone">
+                  電話で問い合わせる <span className="arrow" />
+                </TrackA>
               </div>
             </div>
           </FadeUp>

@@ -2,12 +2,12 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 const nav = [
-  { href: '/about',  label: '施設紹介'  },
-  { href: '/stay',   label: '宿泊プラン' },
-  { href: '/food',   label: 'お食事'    },
-  { href: '/news',   label: 'お知らせ'  },
-  { href: '/faq',    label: 'よくある質問' },
-  { href: '/access', label: 'アクセス'  },
+  { href: '/about/',  label: '施設紹介'  },
+  { href: '/stay/',   label: '宿泊プラン' },
+  { href: '/food/',   label: 'お食事'    },
+  { href: '/news/',   label: 'お知らせ'  },
+  { href: '/faq/',    label: 'よくある質問' },
+  { href: '/access/', label: 'アクセス'  },
 ]
 
 export default function Footer() {
@@ -19,7 +19,7 @@ export default function Footer() {
           <p className="footer-cta__title">ご予約・お問い合わせ</p>
           <p className="footer-cta__sub">1日1組限定。お気軽にご相談ください。</p>
         </div>
-        <Link href="/stay#reserve" className="footer-cta__btn">予約する <span className="arrow" /></Link>
+        <Link href="/stay/#reserve" className="footer-cta__btn">予約する <span className="arrow" /></Link>
       </div>
 
       {/* メイン */}

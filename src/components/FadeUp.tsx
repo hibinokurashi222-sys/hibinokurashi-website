@@ -13,6 +13,12 @@ export default function FadeUp({ children, delay = 0 }: { children: React.ReactN
     // ページ遷移時にリセット
     el.classList.remove('in')
 
+    // 動きを抑える設定のユーザーはアニメーションなしで即表示
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      el.classList.add('in')
+      return
+    }
+
     const timer = setTimeout(() => {
       const obs = new IntersectionObserver(
         ([entry]) => {

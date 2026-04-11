@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import Link from 'next/link'
 import FadeUp from '@/components/FadeUp'
+import TrackA from '@/components/TrackA'
 
 export const metadata: Metadata = {
   title: '施設紹介',
@@ -220,7 +220,9 @@ export default function Stay() {
             <div className="reserve-box">
               <p>現在、メール・お電話にてご予約を承っております。<br />空き状況やご不明な点もお気軽にお問い合わせください。</p>
               <div className="reserve-contacts">
-                <a href="mailto:info@hibinokurashi.com" className="btn btn--blue">メールで問い合わせる <span className="arrow" /></a>
+                <TrackA href="mailto:info@hibinokurashi.com" className="btn btn--blue" gtmEvent="contact_click" gtmLabel="stay_email">
+                  メールで問い合わせる <span className="arrow" />
+                </TrackA>
               </div>
               <p className="reserve-note">受付時間：9:00〜18:00（不定休）<br />お返事は2営業日以内を目安にご連絡いたします。</p>
             </div>

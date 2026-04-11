@@ -1,17 +1,18 @@
 'use client'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
+import TrackLink from './TrackLink'
 
 const nav = [
-  { href: '/',       label: 'ホーム'    },
-  { href: '/about',  label: '施設紹介'  },
-  { href: '/stay',   label: '宿泊プラン' },
-  { href: '/food',   label: 'お食事'    },
-  { href: '/news',   label: 'お知らせ'  },
-  { href: '/faq',    label: 'よくある質問' },
-  { href: '/access', label: 'アクセス'  },
+  { href: '/',        label: 'ホーム'    },
+  { href: '/about/',  label: '施設紹介'  },
+  { href: '/stay/',   label: '宿泊プラン' },
+  { href: '/food/',   label: 'お食事'    },
+  { href: '/news/',   label: 'お知らせ'  },
+  { href: '/faq/',    label: 'よくある質問' },
+  { href: '/access/', label: 'アクセス'  },
 ]
 
 export default function Header() {
@@ -63,8 +64,8 @@ export default function Header() {
         </div>
       </header>
 
-      <div className={`nav-overlay${open ? ' open' : ''}`} onClick={() => setOpen(false)} />
-      <nav className={`nav-drawer${open ? ' open' : ''}`}>
+      <div className={`nav-overlay${open ? ' open' : ''}`} onClick={() => setOpen(false)} aria-hidden="true" />
+      <nav className={`nav-drawer${open ? ' open' : ''}`} aria-label="サイトメニュー" aria-hidden={!open} inert={!open || undefined}>
         <div className="nav-drawer-inner">
           <Link href="/" className="nav-drawer-logo">
             <Image src="/images/logo-header.png" alt="ヒビノクラシ" width={200} height={54} style={{ height: 72, width: 'auto' }} />
@@ -77,7 +78,9 @@ export default function Header() {
             ))}
           </ul>
           <div className="nav-drawer-cta">
-            <Link href="/stay#reserve" className="btn btn--blue">ご予約・お問い合わせ <span className="arrow" /></Link>
+            <TrackLink href="/stay/#reserve" className="btn btn--blue" gtmEvent="reserve_click" gtmLabel="nav_drawer_cta">
+              ご予約・お問い合わせ <span className="arrow" />
+            </TrackLink>
           </div>
           <p className="nav-drawer-tel">TEL: <a href="tel:08096571238">080-9657-1238</a><br /><span>受付 9:00〜17:00</span></p>
         </div>

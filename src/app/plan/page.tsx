@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import Link from 'next/link'
 import FadeUp from '@/components/FadeUp'
+import TrackLink from '@/components/TrackLink'
 
 export const metadata: Metadata = {
   title: '宿泊プラン・料金',
@@ -107,7 +107,9 @@ export default function Plan() {
                     <span className="plan-price-num">{price}</span>
                     <span className="plan-price-unit">{unit}</span>
                   </div>
-                  <Link href="/stay/#reserve" className="btn btn--blue">このプランで予約する <span className="arrow" /></Link>
+                  <TrackLink href="/stay/#reserve" className="btn btn--blue" gtmEvent="reserve_click" gtmLabel={`plan_${id}`}>
+                    このプランで予約する <span className="arrow" />
+                  </TrackLink>
                 </div>
               </div>
             </FadeUp>

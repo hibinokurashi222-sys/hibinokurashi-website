@@ -1,11 +1,14 @@
 import type { Metadata, Viewport } from 'next'
 import { Noto_Sans_JP, Noto_Serif_JP } from 'next/font/google'
+import Script from 'next/script'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import ScrollReveal from '@/components/ScrollReveal'
 import StickyCta from '@/components/StickyCta'
 import LoadingScreen from '@/components/LoadingScreen'
 import './globals.css'
+
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID
 
 const notoSansJP = Noto_Sans_JP({
   weight: ['400', '500', '700'],
@@ -33,8 +36,10 @@ const lodgingBusinessJsonLd = {
   email: 'info@hibinokurashi.com',
   address: {
     '@type': 'PostalAddress',
+    postalCode: '988-0824',
     addressRegion: '宮城県',
     addressLocality: '気仙沼市',
+    streetAddress: '川原崎182',
     addressCountry: 'JP',
   },
   geo: {
@@ -100,10 +105,33 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
+        {GTM_ID && (
+          <>
+            {/* GTM — head スニペット */}
+            <Script id="gtm-head" strategy="afterInteractive">{`
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;
+              f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','${GTM_ID}');
+            `}</Script>
+            {/* GTM — noscript フォールバック */}
+            <noscript>
+              <iframe
+                src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+                height="0"
+                width="0"
+                style={{ display: 'none', visibility: 'hidden' }}
+              />
+            </noscript>
+          </>
+        )}
+        <a href="#main-content" className="skip-link">コンテンツへスキップ</a>
         <LoadingScreen />
         <ScrollReveal />
         <Header />
-        <main>{children}</main>
+        <main id="main-content">{children}</main>
         <StickyCta />
         <Footer />
       </body>
